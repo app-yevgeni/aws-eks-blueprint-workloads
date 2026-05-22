@@ -160,6 +160,3 @@ resource "aws_security_group" "asg_sg" {
     Name = "asg-sg"
   }
 }
-
-
-
