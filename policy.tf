@@ -42,7 +42,6 @@ resource "aws_iam_role_policy_attachment" "ebs_csi_irsa_policy" {
 }
 
 
-
 resource "aws_eks_addon" "ebs_csi" {
   cluster_name             = aws_eks_cluster.main.name
   addon_name               = "aws-ebs-csi-driver"
@@ -51,6 +50,8 @@ resource "aws_eks_addon" "ebs_csi" {
 
   depends_on = [
     aws_eks_cluster.main,
+    aws_eks_node_group.main,
+    aws_eks_node_group.app,
     aws_iam_role_policy_attachment.ebs_csi_irsa_policy
   ]
 }
