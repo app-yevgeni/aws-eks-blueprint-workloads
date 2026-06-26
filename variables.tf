@@ -18,3 +18,15 @@ variable "instance_types" {
   type    = list(string)
   default  = ["t3.medium"]
 }
+
+variable "kubeconfig_path" {
+  type        = string
+  description = "Path to kubeconfig for the target cluster"
+  default     = "~/.kube/config"
+}
+
+variable "namespace" {
+  type        = string
+  default     = "weaviate"
+  description = "Kubernetes namespace where Weaviate is deployed"
+}
