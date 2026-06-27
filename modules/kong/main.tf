@@ -7,40 +7,36 @@ resource "helm_release" "kong" {
   repository = "https://charts.konghq.com"
   chart      = "kong"
 
-  set {
-    name  = "ingressController.installCRDs"
-    value = "false"
-  }
-
-  set {
-    name  = "ingressController.gatewayAPI.enabled"
-    value = "true"
-  }
-
-  set {
-    name  = "proxy.type"
-    value = "LoadBalancer"
-  }
-
-  set {
-    name  = "proxy.externalTrafficPolicy"
-    value = "Local"
-  }
-
-  set {
-    name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"
-    value = "nlb"
-  }
-
-  set {
-    name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-scheme"
-    value = "internet-facing"
-  }
-
-  set {
-    name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
-    value = "ip"
-  }
+  set = [
+    {
+      name  = "ingressController.installCRDs"
+      value = "false"
+    },
+    {
+      name  = "ingressController.gatewayAPI.enabled"
+      value = "true"
+    },
+    {
+      name  = "proxy.type"
+      value = "LoadBalancer"
+    },
+    {
+      name  = "proxy.externalTrafficPolicy"
+      value = "Local"
+    },
+    {
+      name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"
+      value = "nlb"
+    },
+    {
+      name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-scheme"
+      value = "internet-facing"
+    },
+    {
+      name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-nlb-target-type"
+      value = "ip"
+    }
+  ]
 }
 
 
